@@ -16,6 +16,7 @@ void uart_initialize(uint32_t baudrate) {
 	UCSR0C = (3 << UCSZ00); // 8-bit
 }
 
+
 void uart_transmit_byte(uint8_t data) {
 	while (!(UCSR0A & (1 << UDRE0))) {
 		// wait
@@ -24,15 +25,18 @@ void uart_transmit_byte(uint8_t data) {
 }
 
 
-void uart_transmit_buffer(const uint8_t* buffer, uint8_t n) {
-	for (uint8_t i = 0; i < n; i++) {
-		uart_transmit_byte(buffer[i]);
+void uart_transmit_buffer(const void* buffer, uint32_t len) {
+	const uint8_t *data = (uint8_t*)buffer;
+
+	for (uint8_t i = 0; i < len; i++) {
+		uart_transmit_byte(data[i]);
 	}
 }
 
 
 void uart_print(const char* buffer) {
-	uart_transmit_buffer((const uint8_t*)buffer, strlen(buffer));
+	uart_transmit_buffer(buffer, strlen(buffer));
+	uart_transmit_byte('\r');
 }
 
 
