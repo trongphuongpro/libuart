@@ -16,6 +16,7 @@ void uart_initialize(uint32_t baudrate) {
 	UCSR0C = (3 << UCSZ00); // 8-bit
 }
 
+
 void uart_transmit_byte(uint8_t data) {
 	while (!(UCSR0A & (1 << UDRE0))) {
 		// wait
