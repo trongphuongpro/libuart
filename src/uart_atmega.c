@@ -1,8 +1,6 @@
 #include <avr/io.h>
 #include <string.h>
-#include "libuart.h"
-
-#define F_CPU	8000000UL
+#include "uart.h"
 
 
 void uart_initialize(uint32_t baudrate) {
@@ -46,9 +44,10 @@ uint8_t uart_receive_byte() {
 }
 
 
-void uart_flush() {
-	uint8_t dummy;
+uint8_t uart_flush() {
+	uint8_t dummy = 0;
 	while (UCSR0A & (1 << RXC0)) {
 		dummy = UDR0;
 	}
+	return dummy;
 }

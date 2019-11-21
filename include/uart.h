@@ -1,17 +1,16 @@
-#ifndef LIB_UART_H
-#define LIB_UART_H
+#ifndef __UART__
+#define __UART__
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* Prototype */
 void uart_initialize(uint32_t);
 void uart_transmit_byte(uint8_t);
 void uart_transmit_buffer(const uint8_t*, uint8_t);
 uint8_t uart_receive_byte(void);
 void uart_receive_buffer(uint8_t*);
-void uart_flush();
+uint8_t uart_flush();
 void uart_print(const char*);
 
 
@@ -19,4 +18,4 @@ void uart_print(const char*);
 }
 #endif
 
-#endif
+#endif /* __UART__ */
