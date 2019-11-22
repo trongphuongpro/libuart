@@ -15,7 +15,7 @@ set(CMAKE_EXE_LINKER_FLAGS -mmcu=${MCU})
 #-----------------------------------------------------------------------------#
 
 set(TARGET uart)
-add_library(${TARGET} src/uart_atmega.c)
+add_library(${TARGET} STATIC src/uart_atmega.c)
 target_include_directories(${TARGET} PUBLIC include)
 
 #-----------------------------------------------------------------------------#

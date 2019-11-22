@@ -3,7 +3,7 @@
 #include "uart.h"
 
 
-void uart_initialize(uint32_t baudrate) {
+void uart_init(uint32_t baudrate) {
 	/* baudrate */
 	uint8_t ubbr = F_CPU / (16 * baudrate) - 1;
 	UBRR0H = ubbr >> 8;
