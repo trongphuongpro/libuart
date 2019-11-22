@@ -19,14 +19,12 @@ add_library(${TARGET} src/uart_atmega.c)
 target_include_directories(${TARGET} PUBLIC include)
 
 #-----------------------------------------------------------------------------#
-target_compile_options(${TARGET} PUBLIC
-    -mmcu=${MCU}
-    -std=gnu11
-    -O2
-    -Wall
-    -Werror
+target_compile_options(${TARGET} PUBLIC -mmcu=${MCU}
+    									-std=gnu11
+    									-O2
+    									-Wall
+    									-Werror
 )
-target_compile_definitions(${TARGET} PUBLIC
-	F_CPU=${F_CPU}	
-)
+
+target_compile_definitions(${TARGET} PUBLIC F_CPU=${F_CPU})
 #-----------------------------------------------------------------------------#
