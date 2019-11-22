@@ -12,7 +12,7 @@ uint8_t uart_receive_byte(void);
 void uart_receive_buffer(uint8_t*);
 uint8_t uart_flush();
 void uart_print(const char*);
-
+void uart_putchar(char);
 
 #ifdef __cplusplus
 }

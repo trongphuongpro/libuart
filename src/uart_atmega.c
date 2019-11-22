@@ -1,6 +1,11 @@
 #include <avr/io.h>
+#include <stdio.h>
 #include <string.h>
 #include "uart.h"
+
+
+static int uart_putchar_printf(char, FILE*);
+static FILE uart_stdout = FDEV_SETUP_STREAM(uart_putchar_printf, NULL, _FDEV_SETUP_WRITE);
 
 
 void uart_init(uint32_t baudrate) {
@@ -14,6 +19,8 @@ void uart_init(uint32_t baudrate) {
 
 	UCSR0B = (1 << RXEN0) | (1 << TXEN0);
 	UCSR0C = (3 << UCSZ00); // 8-bit
+
+	stdout = &uart_stdout;
 }
 
 
@@ -34,9 +41,25 @@ void uart_transmit_buffer(const void* buffer, uint32_t len) {
 }
 
 
+void uart_putchar(char c) {
+	if (c == '\n') {
+		uart_transmit_byte('\r');
+	}
+	uart_transmit_byte(c);
+}
+
+
+int uart_putchar_printf(char c, FILE *stream) {
+	uart_putchar(c);
+
+	return 0;
+}
+
+
 void uart_print(const char* buffer) {
-	uart_transmit_buffer(buffer, strlen(buffer));
-	uart_transmit_byte('\r');
+	for (int i = 0; i < strlen(buffer); i++) {
+		uart_putchar(buffer[i]);
+	}
 }
 
 
