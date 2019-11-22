@@ -4,11 +4,14 @@
 #include "uart.h"
 
 
-static int uart_putchar_printf(char, FILE*);
-static FILE uart_stdout = FDEV_SETUP_STREAM(uart_putchar_printf, NULL, _FDEV_SETUP_WRITE);
+static int uart_putchar_io(char, FILE*);
+static FILE uart_stdout = FDEV_SETUP_STREAM(uart_putchar_io, NULL, _FDEV_SETUP_WRITE);
+
+//static int uart_getchar_io(FILE*);
+//static FILE uart_stdin = FDEV_SETUP_STREAM(NULL, uart_getchar_io, _FDEV_SETUP_READ);
 
 
-void uart_init(uint32_t baudrate) {
+void uart_open(uint32_t baudrate) {
 	/* baudrate */
 	uint8_t ubbr = F_CPU / (16 * baudrate) - 1;
 	UBRR0H = ubbr >> 8;
@@ -24,7 +27,7 @@ void uart_init(uint32_t baudrate) {
 }
 
 
-void uart_transmit_byte(uint8_t data) {
+void uart_write(uint8_t data) {
 	while (!(UCSR0A & (1 << UDRE0))) {
 		// wait
 	}
@@ -32,27 +35,25 @@ void uart_transmit_byte(uint8_t data) {
 }
 
 
-void uart_transmit_buffer(const void* buffer, uint32_t len) {
+void uart_writeBuffer(const void* buffer, uint32_t len) {
 	const uint8_t *data = (uint8_t*)buffer;
 
 	for (uint8_t i = 0; i < len; i++) {
-		uart_transmit_byte(data[i]);
+		uart_write(data[i]);
 	}
 }
 
 
 void uart_putchar(char c) {
 	if (c == '\n') {
-		uart_transmit_byte('\r');
+		uart_write('\r');
 	}
-	uart_transmit_byte(c);
-}
 
+	uart_write(c);
 
-int uart_putchar_printf(char c, FILE *stream) {
-	uart_putchar(c);
-
-	return 0;
+	if (c == '\r') {
+		uart_write('\n');
+	}
 }
 
 
@@ -63,7 +64,7 @@ void uart_print(const char* buffer) {
 }
 
 
-uint8_t uart_receive_byte() {
+uint8_t uart_read() {
 	while (!(UCSR0A & (1 << RXC0))) {
 		// wait
 	}
@@ -78,3 +79,18 @@ uint8_t uart_flush() {
 	}
 	return dummy;
 }
+
+
+static int uart_putchar_io(char c, FILE *stream) {
+	uart_putchar(c);
+
+	return 0;
+}
+
+
+/*static int uart_getchar_io(FILE *stream) {
+	char c = uart_read();
+	uart_putchar(c);
+
+	return c;
+}*/
