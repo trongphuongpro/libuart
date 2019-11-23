@@ -72,6 +72,11 @@ uint8_t uart_read() {
 }
 
 
+char uart_getchar() {
+	return uart_read();
+}
+
+
 uint8_t uart_flush() {
 	uint8_t dummy = 0;
 	while (UCSR0A & (1 << RXC0)) {

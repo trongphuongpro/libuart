@@ -16,6 +16,7 @@ void uart_print(const char*);
 
 uint8_t uart_read(void);
 uint8_t* uart_readBuffer(uint32_t);
+char uart_getchar();
 
 uint8_t uart_flush(void);
 
