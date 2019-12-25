@@ -1,4 +1,5 @@
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include <stdio.h>
 #include <string.h>
 #include "uart.h"
@@ -18,9 +19,7 @@ void uart_open(uint32_t baudrate) {
 	UBRR0L = ubbr;
 
 	/* configure */
-	UCSR0A = 0x00;
-
-	UCSR0B = (1 << RXEN0) | (1 << TXEN0);
+	UCSR0B = (1 << RXCIE0) | (1 << RXEN0) | (1 << TXEN0);
 	UCSR0C = (3 << UCSZ00); // 8-bit
 
 	stdout = &uart_stdout;
@@ -99,3 +98,13 @@ static int uart_putchar_io(char c, FILE *stream) {
 
 	return c;
 }*/
+
+
+#ifndef __MESSAGE__
+
+ISR(USART_RX_vect) {
+
+	// something here
+}
+
+#endif
