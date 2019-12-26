@@ -100,11 +100,9 @@ static int uart_putchar_io(char c, FILE *stream) {
 }*/
 
 
-#ifndef __MESSAGE__
-
+/*
 ISR(USART_RX_vect) {
 
 	// something here
 }
-
-#endif
+*/
