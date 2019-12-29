@@ -1,6 +1,6 @@
 /** 
  * @file uart_atmega.c
- * @brief Function prototypes for UART communication protocol
+ * @brief Functions for UART communication protocol
  * @author Nguyen Trong Phuong (aka trongphuongpro)
  * @date 2019 Dec 28
  */

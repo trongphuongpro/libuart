@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['libuart_0',['libuart',['../index.html',1,'']]]
+  ['library_20uart_20for_20mcu_0',['Library UART for MCU',['../index.html',1,'']]]
 ];
