@@ -14,7 +14,7 @@
 
 static uint32_t UARTBase;
 
-void uart_open(uint32_t base) {
+void tiva_uart_open(uint32_t base) {
 	UARTBase = base;
 }
 

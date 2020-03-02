@@ -22,7 +22,18 @@ extern "C" {
  * @param baudrate UART baudrate.
  * @return nothing.
  */
-void uart_open(uint32_t baudrate);
+void atmega_uart_open(uint32_t baudrate);
+
+
+/**
+ * @brief Initialize UART bus with UART Base Memory
+ *
+ * Enable UART RX interrupt
+ *
+ * @param baudrate UART baudrate.
+ * @return nothing.
+ */
+void tiva_uart_open(uint32_t base);
 
 
 /**
