@@ -30,7 +30,7 @@ void atmega_uart_open(uint32_t baudrate);
  *
  * Enable UART RX interrupt
  *
- * @param baudrate UART baudrate.
+ * @param base Memory base of Tiva C UART module.
  * @return nothing.
  */
 void tiva_uart_open(uint32_t base);
