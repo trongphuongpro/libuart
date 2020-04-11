@@ -19,21 +19,22 @@ extern "C" {
  *
  * Enable UART RX interrupt
  *
+ * @param base UART memory base
  * @param baudrate UART baudrate.
  * @return nothing.
  */
-void atmega_uart_open(uint32_t baudrate);
+void tiva_uart_init(uint32_t base, uint32_t baudrate);
 
 
 /**
- * @brief Initialize UART bus with UART Base Memory
+ * @brief Initialize UART bus with baudrate
  *
  * Enable UART RX interrupt
  *
- * @param base Memory base of Tiva C UART module.
+ * @param baudrate UART baudrate.
  * @return nothing.
  */
-void tiva_uart_open(uint32_t base);
+void atmega_uart_init(uint32_t baudrate);
 
 
 /**
