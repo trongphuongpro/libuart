@@ -77,14 +77,15 @@ $(function() {
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;driverlib/sysctl.h&quot;</code><br />
 <code>#include &quot;driverlib/uart.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="uart_8h_source.html">uart.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9e6eccb1e01b0a7be965357d14cc3e77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__tiva_8c.html#a9e6eccb1e01b0a7be965357d14cc3e77">tiva_uart_open</a> (uint32_t base)</td></tr>
-<tr class="memdesc:a9e6eccb1e01b0a7be965357d14cc3e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize UART bus with UART Base Memory.  <a href="uart__tiva_8c.html#a9e6eccb1e01b0a7be965357d14cc3e77">More...</a><br /></td></tr>
-<tr class="separator:a9e6eccb1e01b0a7be965357d14cc3e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28e8262ac32cfdbd414673aa7080e83c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__tiva_8c.html#a28e8262ac32cfdbd414673aa7080e83c">tiva_uart_init</a> (uint32_t base, uint32_t baudrate)</td></tr>
+<tr class="memdesc:a28e8262ac32cfdbd414673aa7080e83c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize UART bus with baudrate.  <a href="uart__tiva_8c.html#a28e8262ac32cfdbd414673aa7080e83c">More...</a><br /></td></tr>
+<tr class="separator:a28e8262ac32cfdbd414673aa7080e83c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69fe2a773bef84fbd5383ac06e5a003b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__tiva_8c.html#a69fe2a773bef84fbd5383ac06e5a003b">uart_send</a> (uint8_t data)</td></tr>
 <tr class="memdesc:a69fe2a773bef84fbd5383ac06e5a003b"><td class="mdescLeft">&#160;</td><td class="mdescRight">transmit one byte via UART bus  <a href="uart__tiva_8c.html#a69fe2a773bef84fbd5383ac06e5a003b">More...</a><br /></td></tr>
 <tr class="separator:a69fe2a773bef84fbd5383ac06e5a003b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,27 +110,38 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Nguyen Trong Phuong (aka trongphuongpro) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2019 Dec 28 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a9e6eccb1e01b0a7be965357d14cc3e77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e6eccb1e01b0a7be965357d14cc3e77">&#9670;&nbsp;</a></span>tiva_uart_open()</h2>
+<a id="a28e8262ac32cfdbd414673aa7080e83c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28e8262ac32cfdbd414673aa7080e83c">&#9670;&nbsp;</a></span>tiva_uart_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void tiva_uart_open </td>
+          <td class="memname">void tiva_uart_init </td>
           <td>(</td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>base</em></td><td>)</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baudrate</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize UART bus with UART Base Memory. </p>
+<p>Initialize UART bus with baudrate. </p>
 <p>Enable UART RX interrupt</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">base</td><td>Memory base of Tiva C UART module. </td></tr>
+    <tr><td class="paramname">base</td><td>UART memory base </td></tr>
+    <tr><td class="paramname">baudrate</td><td>UART baudrate. </td></tr>
   </table>
   </dd>
 </dl>
